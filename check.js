@@ -44,15 +44,16 @@ async function main() {
     "\n" + URL;
   console.log(msg);
 
-  await fetch(`https://ntfy.sh/${TOPIC}`, {
+    const r = await fetch(`https://ntfy.sh/${TOPIC}`, {
     method: "POST",
     headers: {
-      Title: "Zmena na stránke turnaja!",
+      Title: "Zmena na stranke turnaja!",
       Priority: "urgent",
       Email: EMAIL,
     },
     body: msg,
   });
+  console.log("ntfy odpoved:", r.status, await r.text());
 
   fs.writeFileSync(FILE, JSON.stringify(lines, null, 2));
 }
