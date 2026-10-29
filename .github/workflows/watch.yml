@@ -3,7 +3,7 @@ name: Watch tournament page
 
 on:
   schedule:
-    - cron: "*/2 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
