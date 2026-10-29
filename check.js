@@ -5,7 +5,7 @@ const URL = "https://www.beachdrazdiak.sk/turnaje/238-black-light-neon-beach-tou
 const TOPIC = process.env.NTFY_TOPIC;
 const FILE = "baseline.json";
 const INTERVAL = 30_000;   // kontrola každých 30 s
-const DURATION = 270_000;  // beh trvá cca 4,5 minúty
+const DURATION = 120_000;  // beh trvá cca 2 minúty
 
 const toLines = (html) =>
   html
