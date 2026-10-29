@@ -49,7 +49,6 @@ async function main() {
     headers: {
       Title: "Zmena na stranke turnaja!",
       Priority: "urgent",
-      Email: EMAIL,
     },
     body: msg,
   });
