@@ -7,7 +7,7 @@ const URL =
 const TOPIC = process.env.NTFY_TOPIC;
 const FILE = "baseline.json";
 const INTERVAL = 30_000;
-const DURATION = 120_000;
+const DURATION = 270_000;
 
 const toLines = (html) =>
   html
