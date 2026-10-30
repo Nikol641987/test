@@ -1,13 +1,13 @@
-
 name: Watch tournament page
 
 on:
   schedule:
-   - cron: "3-58/5 * * * *"
+    - cron: "3-58/5 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: watch
@@ -28,14 +28,16 @@ jobs:
         run: node check.js
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-          NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
 
-     
       - name: Save baseline
         run: |
           git config user.name "watch-bot"
           git config user.email "watch-bot@users.noreply.github.com"
           git add baseline.json
-          git diff --staged --quiet || git commit -m "update baseline"
-          git pull --rebase origin main
-          git push origin main
+          git diff --staged --quiet || (git commit -m "update baseline" && git push)
+
+      - name: Start next run
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run watch.yml --ref main
